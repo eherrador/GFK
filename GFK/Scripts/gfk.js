@@ -1,7 +1,6 @@
-﻿
-var map;
-$(document).ready(function ($) {
+﻿$(document).ready(function ($) {
     "use strict";
+    var map;
 
     function initMap() {
         //Enabling new cartography and themes
@@ -42,7 +41,42 @@ $(document).ready(function ($) {
     google.maps.event.addDomListener(window, 'load', initMap);
 
     startButtonEvents();
+
+    //var hraformEthnicGroupPickButton = $("#hraformEthnicGroupPickButton");
+    //$("#hraformEthnicGroupMenu li a").on("click", function () {
+    //    var ethnicGroup = $(this).text();
+    //    hraformEthnicGroupPickButton.text(ethnicGroup);
+    //});
 });
+
+(function () {
+    "use strict";
+
+    var pickButtonCategorias = $("#pickButtonCategorias");
+    var pickButtonClientes = $("#pickButtonClientes");
+    var pickButtonMetodologias = $("#pickButtonMetodologias");
+    var pickButtonTipoLevantamientos = $("#pickButtonTipoLevantamientos");
+
+    $("#groupMenuCategorias li a").on("click", function () {
+        var ethnicGroup = $(this).text();
+        pickButtonCategorias.text(ethnicGroup);
+    });
+
+    $("#groupMenuClientes li a").on("click", function () {
+        var ethnicGroup = $(this).text();
+        pickButtonClientes.text(ethnicGroup);
+    });
+
+    $("#groupMenuMetodologias li a").on("click", function () {
+        var ethnicGroup = $(this).text();
+        pickButtonMetodologias.text(ethnicGroup);
+    });
+
+    $("#groupMenuTipoLevantamientos li a").on("click", function () {
+        var ethnicGroup = $(this).text();
+        pickButtonTipoLevantamientos.text(ethnicGroup);
+    });
+})();
 
 function startButtonEvents() {
     document.getElementById('menuMonterrey'
