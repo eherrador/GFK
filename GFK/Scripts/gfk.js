@@ -3,52 +3,109 @@
 $(document).ready(function ($) {
     "use strict";
 
-    function initMap() {
-        //Enabling new cartography and themes
-        google.maps.visualRefresh = true;
-
-        //Setting starting options of map
-        var mapOptions = {
-            //center: new google.maps.LatLng(39.9078, 32.8252),
-            //zoom: 11,
-            //maxZoom: 16,
-            //minZoom: 7,
-            //draggable: false,
-            //disableDefaultUI: false,
-            //scrollwheel: false,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-
-        //Getting map DOM element
-        var mapElement = document.getElementById('mapDiv');
-
-        //Creating a map with DOM element which is just obtained
-        mapa = new google.maps.Map(mapElement, mapOptions);
-
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-              function (position) {
-                  var lat = position.coords.latitude;
-                  var lng = position.coords.longitude;
-                  //Creating LatLng object with latitude and
-                  //longitude.
-                  var devCenter = new google.maps.LatLng(lat, lng);
-                  mapa.setCenter(devCenter);
-                  mapa.setZoom(11);
-              });
-        }
-    }
+    initMap();
 
     google.maps.event.addDomListener(window, 'load', initMap);
 
     startButtonEvents();
 
-    //var hraformEthnicGroupPickButton = $("#hraformEthnicGroupPickButton");
-    //$("#hraformEthnicGroupMenu li a").on("click", function () {
-    //    var ethnicGroup = $(this).text();
-    //    hraformEthnicGroupPickButton.text(ethnicGroup);
-    //});
+    parseGeoJSON();
 });
+
+function drawGeometry(geom) {
+    if (geom.type == 'Point') {
+        var coordinate = new
+          google.maps.LatLng(geom.coordinates[1],
+          geom.coordinates[0]);
+        var marker = new google.maps.Marker({
+            position: coordinate,
+            map: mapa,
+            title: 'Marker'
+        });
+    }
+    else if (geom.type == 'LineString') {
+        var pointCount = geom.coordinates.length;
+        var linePath = [];
+        for (var i = 0; i < pointCount; i++) {
+            var tempLatLng = new
+              google.maps.LatLng(geom.coordinates[i][1],
+              geom.coordinates[i][0]);
+            linePath.push(tempLatLng);
+        }
+        var lineOptions = {
+            path: linePath,
+            strokeWeight: 7,
+            strokeColor: '#19A3FF',
+            strokeOpacity: 0.8,
+            map: mapa
+        };
+        var polyline = new google.maps.Polyline(lineOptions);
+    }
+    else if (geom.type == 'Polygon') {
+        var pointCount = geom.coordinates[0].length;
+        var areaPath = [];
+        for (var i = 0; i < pointCount; i++) {
+            var tempLatLng = new google.maps.LatLng(
+              geom.coordinates[0][i][1],
+              geom.coordinates[0][i][0]);
+            areaPath.push(tempLatLng);
+        }
+        var polygonOptions = {
+            paths: areaPath,
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.9,
+            strokeWeight: 3,
+            fillColor: '#FFFF00',
+            fillOpacity: 0.25,
+            map: mapa
+        };
+        var polygon = new google.maps.Polygon(polygonOptions);
+    }
+}
+
+function parseGeoJSON() {
+    $.getJSON('/GeoJSON/DFUrbAgeb.js', function (data) {
+        $.each(data.features, function (key, val) {
+            drawGeometry(val.geometry);
+        });
+    });
+}
+
+function initMap() {
+    //Enabling new cartography and themes
+    google.maps.visualRefresh = true;
+
+    //Setting starting options of map
+    var mapOptions = {
+        //center: new google.maps.LatLng(39.9078, 32.8252),
+        //zoom: 11,
+        //maxZoom: 16,
+        //minZoom: 7,
+        //draggable: false,
+        //disableDefaultUI: false,
+        //scrollwheel: false,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    //Getting map DOM element
+    var mapElement = document.getElementById('mapDiv');
+
+    //Creating a map with DOM element which is just obtained
+    mapa = new google.maps.Map(mapElement, mapOptions);
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          function (position) {
+              var lat = position.coords.latitude;
+              var lng = position.coords.longitude;
+              //Creating LatLng object with latitude and
+              //longitude.
+              var devCenter = new google.maps.LatLng(lat, lng);
+              mapa.setCenter(devCenter);
+              mapa.setZoom(11);
+          });
+    }
+}
 
 (function () {
     "use strict";
