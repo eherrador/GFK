@@ -1,6 +1,7 @@
-﻿$(document).ready(function ($) {
+﻿var mapa;
+
+$(document).ready(function ($) {
     "use strict";
-    var map;
 
     function initMap() {
         //Enabling new cartography and themes
@@ -22,7 +23,7 @@
         var mapElement = document.getElementById('mapDiv');
 
         //Creating a map with DOM element which is just obtained
-        map = new google.maps.Map(mapElement, mapOptions);
+        mapa = new google.maps.Map(mapElement, mapOptions);
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
@@ -32,8 +33,8 @@
                   //Creating LatLng object with latitude and
                   //longitude.
                   var devCenter = new google.maps.LatLng(lat, lng);
-                  map.setCenter(devCenter);
-                  map.setZoom(11);
+                  mapa.setCenter(devCenter);
+                  mapa.setZoom(11);
               });
         }
     }
@@ -157,90 +158,90 @@ function startButtonEvents() {
 
 function zoomToMonterrey() {
     var monterrey = new google.maps.LatLng(25.660263, -100.296556);
-    map.setCenter(monterrey);
-    map.setZoom(11);
+    mapa.setCenter(monterrey);
+    mapa.setZoom(11);
 }
 
 function zoomToGuadalajara() {
     var guadalajara = new google.maps.LatLng(20.677807, -103.343825);
-    map.setCenter(guadalajara);
-    map.setZoom(11);
+    mapa.setCenter(guadalajara);
+    mapa.setZoom(11);
 }
 
 function zoomToCiudadMexico() {
     var ciudadmexico = new google.maps.LatLng(19.432604, -99.132935);
-    map.setCenter(ciudadmexico);
-    map.setZoom(11);
+    mapa.setCenter(ciudadmexico);
+    mapa.setZoom(11);
 }
 
 function zoomToCuliacan() {
     var culiacan = new google.maps.LatLng(24.797933, -107.408148);
-    map.setCenter(culiacan);
-    map.setZoom(11);
+    mapa.setCenter(culiacan);
+    mapa.setZoom(11);
 }
 
 function zoomToHermosillo() {
     var hermosillo = new google.maps.LatLng(29.081477, -110.962376);
-    map.setCenter(hermosillo);
-    map.setZoom(11);
+    mapa.setCenter(hermosillo);
+    mapa.setZoom(11);
 }
 
 function zoomToMazatlan() {
     var mazatlan = new google.maps.LatLng(23.252780, -106.412851);
-    map.setCenter(mazatlan);
-    map.setZoom(11);
+    mapa.setCenter(mazatlan);
+    mapa.setZoom(11);
 }
 
 function zoomToAguascalientes() {
     var aguascalientes = new google.maps.LatLng(21.889884, -102.291817);
-    map.setCenter(aguascalientes);
-    map.setZoom(11);
+    mapa.setCenter(aguascalientes);
+    mapa.setZoom(11);
 }
 
 function zoomToCelaya() {
     var celaya = new google.maps.LatLng(20.527456, -100.815476);
-    map.setCenter(celaya);
-    map.setZoom(11);
+    mapa.setCenter(celaya);
+    mapa.setZoom(11);
 }
 
 function zoomToQueretaro() {
     var queretaro = new google.maps.LatLng(20.604621, -100.403162);
-    map.setCenter(queretaro);
-    map.setZoom(11);
+    mapa.setCenter(queretaro);
+    mapa.setZoom(11);
 }
 
 function zoomToLeon() {
     var leon = new google.maps.LatLng(21.124897, -101.672011);
-    map.setCenter(leon);
-    map.setZoom(11);
+    mapa.setCenter(leon);
+    mapa.setZoom(11);
 }
 
 function zoomToSanLuisPotosi() {
     var sanluispotosi = new google.maps.LatLng(22.154587, -100.972575);
-    map.setCenter(sanluispotosi);
-    map.setZoom(11);
+    mapa.setCenter(sanluispotosi);
+    mapa.setZoom(11);
 }
 
 function zoomToCuernavaca() {
     var cuernavaca = new google.maps.LatLng(18.933813, -99.226891);
-    map.setCenter(cuernavaca);
-    map.setZoom(11);
+    mapa.setCenter(cuernavaca);
+    mapa.setZoom(11);
 }
 
 function zoomToToluca() {
     var toluca = new google.maps.LatLng(19.291760, -99.645114);
-    map.setCenter(toluca);
-    map.setZoom(11);
+    mapa.setCenter(toluca);
+    mapa.setZoom(11);
 }
 
 function zoomToPachuca() {
     var pachuca = new google.maps.LatLng(20.101134, -98.747308);
-    map.setCenter(pachuca);
-    map.setZoom(11);
+    mapa.setCenter(pachuca);
+    mapa.setZoom(11);
 }
 
 function zoomToCuatla() {
     var cuatla = new google.maps.LatLng(18.812774, -98.955508);
-    map.setCenter(cuatla);
-    map.setZoom(11);
+    mapa.setCenter(cuatla);
+    mapa.setZoom(11);
 }
