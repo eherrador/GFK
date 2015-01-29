@@ -1,5 +1,7 @@
 ﻿var mapa;
 var infowindow = null;
+var features = null;
+var otherfeatures = null;
 
 $(document).ready(function ($) {
     "use strict";
@@ -18,9 +20,9 @@ function initMap() {
     //Setting starting options of map
     var mapOptions = {
         //center: new google.maps.LatLng(39.9078, 32.8252),
-        //zoom: 11,
-        //maxZoom: 16,
-        //minZoom: 7,
+        zoom: 11,
+        //maxZoom: 17,
+        //minZoom: 11,
         //draggable: false,
         //disableDefaultUI: false,
         //scrollwheel: false,
@@ -42,12 +44,16 @@ function initMap() {
               //longitude.
               var devCenter = new google.maps.LatLng(lat, lng);
               mapa.setCenter(devCenter);
-              mapa.setZoom(11);
+              //mapa.setZoom(11);
           });
     }
 
-    // Load GeoJSON
-    mapa.data.loadGeoJson("/GeoJSON/DFUrbAgeb.txt");
+    // Load GeoJSON.
+    /*var estado = $.getJSON("/GeoJSON/DFUrbAgeb.json");
+    estado.then(function (data) {
+        features = mapa.data.addGeoJson(data);
+    });
+    */
 
     // set up the style rules and events for google.maps.Data
     mapa.data.setStyle(styleFeature);
@@ -81,13 +87,6 @@ function clickOnGeoJSON(e) {
     infowindow.setContent(content);
     infowindow.setPosition(e.latLng);
     infowindow.setMap(mapa);
-    //if (infowindow != null)
-    //    infowindow.close();
-    //infowindow = new google.maps.InfoWindow({
-    //    content: ('<div style="width:50px;">' + e.feature.getProperty('POB1') + '</div>'), //'<b>Mouse Coordinates : </b><br><b>Latitude : </b>' + e.latLng.lat() + '<br><b>Longitude: </b>' + e.latLng.lng(),
-    //    position: e.latLng
-    //});
-    //infowindow.open(mapa);
 }
 
 function mouseInToRegion(e) {
@@ -105,7 +104,7 @@ function startButtonEvents() {
       ).addEventListener('click', function () {
           zoomToMonterrey();
       });
-
+    
     document.getElementById('menuGuadalajara'
       ).addEventListener('click', function () {
           zoomToGuadalajara();
@@ -181,121 +180,319 @@ function zoomToMonterrey() {
     var monterrey = new google.maps.LatLng(25.660263, -100.296556);
     mapa.setCenter(monterrey);
     mapa.setZoom(11);
-    // Load GeoJSON
-    mapa.data.loadGeoJson("/GeoJSON/NLUrbAgeb.txt");
+    
+    if (otherfeatures != null) {
+        for (var i = 0; i < otherfeatures.length; i++)
+            mapa.data.remove(otherfeatures[i]);
+    }
+
+    if (features != null) {
+        for (var i = 0; i < features.length; i++)
+            mapa.data.remove(features[i]);
+    }
+
+    var estado = $.getJSON("/GeoJSON/NLUrbAgeb.json");
+    estado.then(function (data) {
+        features = mapa.data.addGeoJson(data);
+    });
 }
 
 function zoomToGuadalajara() {
     var guadalajara = new google.maps.LatLng(20.677807, -103.343825);
     mapa.setCenter(guadalajara);
     mapa.setZoom(11);
-    // Load GeoJSON
-    mapa.data.loadGeoJson("/GeoJSON/JLUrbAgeb.txt");
+    
+    if (otherfeatures != null) {
+        for (var i = 0; i < otherfeatures.length; i++)
+            mapa.data.remove(otherfeatures[i]);
+    }
+
+    if (features != null) {
+        for (var i = 0; i < features.length; i++)
+            mapa.data.remove(features[i]);
+    }
+    
+    var estado = $.getJSON("/GeoJSON/JLUrbAgeb.json");
+    estado.then(function (data) {
+        features = mapa.data.addGeoJson(data);
+    });
 }
 
 function zoomToCiudadMexico() {
     var ciudadmexico = new google.maps.LatLng(19.432604, -99.132935);
     mapa.setCenter(ciudadmexico);
     mapa.setZoom(11);
-    // Load GeoJSON
-    mapa.data.loadGeoJson("/GeoJSON/DFUrbAgeb.txt");
-    mapa.data.loadGeoJson("/GeoJSON/MEXUrbAgeb.txt");
+
+    if (otherfeatures != null) {
+        for (var i = 0; i < otherfeatures.length; i++)
+            mapa.data.remove(otherfeatures[i]);
+    }
+
+    if (features != null) {
+        for (var i = 0; i < features.length; i++)
+            mapa.data.remove(features[i]);
+    }
+
+    var estadoDF = $.getJSON("/GeoJSON/DFUrbAgeb.json");
+    var estadoMX = $.getJSON("/GeoJSON/MEXUrbAgeb.json");
+    estadoDF.then(function (data1) {
+        features = mapa.data.addGeoJson(data1);
+    });
+    estadoMX.then(function (data) {
+        otherfeatures = mapa.data.addGeoJson(data);
+    });
 }
 
 function zoomToCuliacan() {
     var culiacan = new google.maps.LatLng(24.797933, -107.408148);
     mapa.setCenter(culiacan);
     mapa.setZoom(11);
-    // Load GeoJSON
-    mapa.data.loadGeoJson("/GeoJSON/SINUrbAgeb.txt");
+
+    if (otherfeatures != null) {
+        for (var i = 0; i < otherfeatures.length; i++)
+            mapa.data.remove(otherfeatures[i]);
+    }
+
+    if (features != null) {
+        for (var i = 0; i < features.length; i++)
+            mapa.data.remove(features[i]);
+    }
+
+    var estado = $.getJSON("/GeoJSON/SINUrbAgeb.json");
+    estado.then(function (data) {
+        features = mapa.data.addGeoJson(data);
+    });
 }
 
 function zoomToHermosillo() {
     var hermosillo = new google.maps.LatLng(29.081477, -110.962376);
     mapa.setCenter(hermosillo);
     mapa.setZoom(11);
-    // Load GeoJSON
-    mapa.data.loadGeoJson("/GeoJSON/SONUrbAgeb.txt");
+
+    if (otherfeatures != null) {
+        for (var i = 0; i < otherfeatures.length; i++)
+            mapa.data.remove(otherfeatures[i]);
+    }
+
+    if (features != null) {
+        for (var i = 0; i < features.length; i++)
+            mapa.data.remove(features[i]);
+    }
+
+    var estado = $.getJSON("/GeoJSON/SONUrbAgeb.json");
+    estado.then(function (data) {
+        features = mapa.data.addGeoJson(data);
+    });
 }
 
 function zoomToMazatlan() {
     var mazatlan = new google.maps.LatLng(23.252780, -106.412851);
     mapa.setCenter(mazatlan);
     mapa.setZoom(11);
-    // Load GeoJSON
-    mapa.data.loadGeoJson("/GeoJSON/SINUrbAgeb.txt");
+
+    if (otherfeatures != null) {
+        for (var i = 0; i < otherfeatures.length; i++)
+            mapa.data.remove(otherfeatures[i]);
+    }
+
+    if (features != null) {
+        for (var i = 0; i < features.length; i++)
+            mapa.data.remove(features[i]);
+    }
+
+    var estado = $.getJSON("/GeoJSON/SINUrbAgeb.json");
+    estado.then(function (data) {
+        features = mapa.data.addGeoJson(data);
+    });
 }
 
 function zoomToAguascalientes() {
     var aguascalientes = new google.maps.LatLng(21.889884, -102.291817);
     mapa.setCenter(aguascalientes);
     mapa.setZoom(11);
-    // Load GeoJSON
-    mapa.data.loadGeoJson("/GeoJSON/AGSUrbAgeb.txt");
+
+    if (otherfeatures != null) {
+        for (var i = 0; i < otherfeatures.length; i++)
+            mapa.data.remove(otherfeatures[i]);
+    }
+
+    if (features != null) {
+        for (var i = 0; i < features.length; i++)
+            mapa.data.remove(features[i]);
+    }
+
+    var estado = $.getJSON("/GeoJSON/AGSUrbAgeb.json");
+    estado.then(function (data) {
+        features = mapa.data.addGeoJson(data);
+    });
 }
 
 function zoomToCelaya() {
     var celaya = new google.maps.LatLng(20.527456, -100.815476);
     mapa.setCenter(celaya);
     mapa.setZoom(11);
-    // Load GeoJSON
-    mapa.data.loadGeoJson("/GeoJSON/GTOUrbAgeb.txt");
+
+    if (otherfeatures != null) {
+        for (var i = 0; i < otherfeatures.length; i++)
+            mapa.data.remove(otherfeatures[i]);
+    }
+
+    if (features != null) {
+        for (var i = 0; i < features.length; i++)
+            mapa.data.remove(features[i]);
+    }
+
+    var estado = $.getJSON("/GeoJSON/GTOUrbAgeb.json");
+    estado.then(function (data) {
+        features = mapa.data.addGeoJson(data);
+    });
 }
 
 function zoomToQueretaro() {
     var queretaro = new google.maps.LatLng(20.604621, -100.403162);
     mapa.setCenter(queretaro);
     mapa.setZoom(11);
-    // Load GeoJSON
-    mapa.data.loadGeoJson("/GeoJSON/QROUrbAgeb.txt");
+
+    if (otherfeatures != null) {
+        for (var i = 0; i < otherfeatures.length; i++)
+            mapa.data.remove(otherfeatures[i]);
+    }
+
+    if (features != null) {
+        for (var i = 0; i < features.length; i++)
+            mapa.data.remove(features[i]);
+    }
+
+    var estado = $.getJSON("/GeoJSON/QROUrbAgeb.json");
+    estado.then(function (data) {
+        features = mapa.data.addGeoJson(data);
+    });
 }
 
 function zoomToLeon() {
     var leon = new google.maps.LatLng(21.124897, -101.672011);
     mapa.setCenter(leon);
     mapa.setZoom(11);
-    // Load GeoJSON
-    mapa.data.loadGeoJson("/GeoJSON/GTOUrbAgeb.txt");
+
+    if (otherfeatures != null) {
+        for (var i = 0; i < otherfeatures.length; i++)
+            mapa.data.remove(otherfeatures[i]);
+    }
+
+    if (features != null) {
+        for (var i = 0; i < features.length; i++)
+            mapa.data.remove(features[i]);
+    }
+
+    var estado = $.getJSON("/GeoJSON/GTOUrbAgeb.json");
+    estado.then(function (data) {
+        features = mapa.data.addGeoJson(data);
+    });
 }
 
 function zoomToSanLuisPotosi() {
     var sanluispotosi = new google.maps.LatLng(22.154587, -100.972575);
     mapa.setCenter(sanluispotosi);
     mapa.setZoom(11);
-    // Load GeoJSON
-    mapa.data.loadGeoJson("/GeoJSON/SLPUrbAgeb.txt");
+
+    if (otherfeatures != null) {
+        for (var i = 0; i < otherfeatures.length; i++)
+            mapa.data.remove(otherfeatures[i]);
+    }
+
+    if (features != null) {
+        for (var i = 0; i < features.length; i++)
+            mapa.data.remove(features[i]);
+    }
+
+    var estado = $.getJSON("/GeoJSON/SLPUrbAgeb.json");
+    estado.then(function (data) {
+        features = mapa.data.addGeoJson(data);
+    });
 }
 
 function zoomToCuernavaca() {
     var cuernavaca = new google.maps.LatLng(18.933813, -99.226891);
     mapa.setCenter(cuernavaca);
     mapa.setZoom(11);
-    // Load GeoJSON
-    mapa.data.loadGeoJson("/GeoJSON/MORUrbAgeb.txt");
+
+    if (otherfeatures != null) {
+        for (var i = 0; i < otherfeatures.length; i++)
+            mapa.data.remove(otherfeatures[i]);
+    }
+
+    if (features != null) {
+        for (var i = 0; i < features.length; i++)
+            mapa.data.remove(features[i]);
+    }
+
+    var estado = $.getJSON("/GeoJSON/MORUrbAgeb.json");
+    estado.then(function (data) {
+        features = mapa.data.addGeoJson(data);
+    });
 }
 
 function zoomToTijuana() {
     var tijuana = new google.maps.LatLng(32.498910, -116.952915);
     mapa.setCenter(tijuana);
     mapa.setZoom(11);
-    // Load GeoJSON
-    mapa.data.loadGeoJson("/GeoJSON/BCUrbAgeb.txt");
+
+    if (otherfeatures != null) {
+        for (var i = 0; i < otherfeatures.length; i++)
+            mapa.data.remove(otherfeatures[i]);
+    }
+
+    if (features != null) {
+        for (var i = 0; i < features.length; i++)
+            mapa.data.remove(features[i]);
+    }
+
+    var estado = $.getJSON("/GeoJSON/BCUrbAgeb.json");
+    estado.then(function (data) {
+        features = mapa.data.addGeoJson(data);
+    });
 }
 
 function zoomToMexicali() {
     var mexicali = new google.maps.LatLng(32.612183, -115.443600);
     mapa.setCenter(mexicali);
     mapa.setZoom(11);
-    // Load GeoJSON
-    mapa.data.loadGeoJson("/GeoJSON/BCUrbAgeb.txt");
+
+    if (otherfeatures != null) {
+        for (var i = 0; i < otherfeatures.length; i++)
+            mapa.data.remove(otherfeatures[i]);
+    }
+
+    if (features != null) {
+        for (var i = 0; i < features.length; i++)
+            mapa.data.remove(features[i]);
+    }
+
+    var estado = $.getJSON("/GeoJSON/BCUrbAgeb.json");
+    estado.then(function (data) {
+        features = mapa.data.addGeoJson(data);
+    });
 }
 
 function zoomToEnsenada() {
     var ensenada = new google.maps.LatLng(31.833004, -116.597505);
     mapa.setCenter(ensenada);
     mapa.setZoom(11);
-    // Load GeoJSON
-    mapa.data.loadGeoJson("/GeoJSON/BCUrbAgeb.txt");
+
+    if (otherfeatures != null) {
+        for (var i = 0; i < otherfeatures.length; i++)
+            mapa.data.remove(otherfeatures[i]);
+    }
+
+    if (features != null) {
+        for (var i = 0; i < features.length; i++)
+            mapa.data.remove(features[i]);
+    }
+
+    var estado = $.getJSON("/GeoJSON/BCUrbAgeb.json");
+    estado.then(function (data) {
+        features = mapa.data.addGeoJson(data);
+    });
 }
 
 (function () {
