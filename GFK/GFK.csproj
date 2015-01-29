@@ -178,7 +178,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="GeoJSON\DFUrbAgeb.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
@@ -188,6 +187,19 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="GeoJSON\AGSUrbAgeb.txt" />
+    <Content Include="GeoJSON\BCUrbAgeb.txt" />
+    <Content Include="GeoJSON\DFUrbAgeb.txt" />
+    <Content Include="GeoJSON\GTOUrbAgeb.txt" />
+    <Content Include="GeoJSON\HGOUrbAgeb.txt" />
+    <Content Include="GeoJSON\JLUrbAgeb.txt" />
+    <Content Include="GeoJSON\MEXUrbAgeb.txt" />
+    <Content Include="GeoJSON\MORUrbAgeb.txt" />
+    <Content Include="GeoJSON\NLUrbAgeb.txt" />
+    <Content Include="GeoJSON\QROUrbAgeb.txt" />
+    <Content Include="GeoJSON\SINUrbAgeb.txt" />
+    <Content Include="GeoJSON\SLPUrbAgeb.txt" />
+    <Content Include="GeoJSON\SONUrbAgeb.txt" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\gfk.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

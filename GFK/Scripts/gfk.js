@@ -1,4 +1,5 @@
 ﻿var mapa;
+var infowindow = null;
 
 $(document).ready(function ($) {
     "use strict";
@@ -8,68 +9,7 @@ $(document).ready(function ($) {
     google.maps.event.addDomListener(window, 'load', initMap);
 
     startButtonEvents();
-
-    parseGeoJSON();
 });
-
-function drawGeometry(geom) {
-    if (geom.type == 'Point') {
-        var coordinate = new
-          google.maps.LatLng(geom.coordinates[1],
-          geom.coordinates[0]);
-        var marker = new google.maps.Marker({
-            position: coordinate,
-            map: mapa,
-            title: 'Marker'
-        });
-    }
-    else if (geom.type == 'LineString') {
-        var pointCount = geom.coordinates.length;
-        var linePath = [];
-        for (var i = 0; i < pointCount; i++) {
-            var tempLatLng = new
-              google.maps.LatLng(geom.coordinates[i][1],
-              geom.coordinates[i][0]);
-            linePath.push(tempLatLng);
-        }
-        var lineOptions = {
-            path: linePath,
-            strokeWeight: 7,
-            strokeColor: '#19A3FF',
-            strokeOpacity: 0.8,
-            map: mapa
-        };
-        var polyline = new google.maps.Polyline(lineOptions);
-    }
-    else if (geom.type == 'Polygon') {
-        var pointCount = geom.coordinates[0].length;
-        var areaPath = [];
-        for (var i = 0; i < pointCount; i++) {
-            var tempLatLng = new google.maps.LatLng(
-              geom.coordinates[0][i][1],
-              geom.coordinates[0][i][0]);
-            areaPath.push(tempLatLng);
-        }
-        var polygonOptions = {
-            paths: areaPath,
-            strokeColor: '#FF0000',
-            strokeOpacity: 0.9,
-            strokeWeight: 3,
-            fillColor: '#FFFF00',
-            fillOpacity: 0.25,
-            map: mapa
-        };
-        var polygon = new google.maps.Polygon(polygonOptions);
-    }
-}
-
-function parseGeoJSON() {
-    $.getJSON('/GeoJSON/DFUrbAgeb.js', function (data) {
-        $.each(data.features, function (key, val) {
-            drawGeometry(val.geometry);
-        });
-    });
-}
 
 function initMap() {
     //Enabling new cartography and themes
@@ -105,36 +45,60 @@ function initMap() {
               mapa.setZoom(11);
           });
     }
+
+    // Load GeoJSON
+    mapa.data.loadGeoJson("/GeoJSON/DFUrbAgeb.txt");
+
+    // set up the style rules and events for google.maps.Data
+    mapa.data.setStyle(styleFeature);
+
+    mapa.data.addListener('click', clickOnGeoJSON);
+    mapa.data.addListener('mouseover', mouseInToRegion);
+    mapa.data.addListener('mouseout', mouseOutOfRegion);
 }
 
-(function () {
-    "use strict";
+function styleFeature(feature) {
+    var outlineWeight = 0.5, zIndex = 1;
+    if (feature.getProperty('state') === 'hover') {
+        outlineWeight = zIndex = 2;
+    }
 
-    var pickButtonCategorias = $("#pickButtonCategorias");
-    var pickButtonClientes = $("#pickButtonClientes");
-    var pickButtonMetodologias = $("#pickButtonMetodologias");
-    var pickButtonTipoLevantamientos = $("#pickButtonTipoLevantamientos");
+    return {
+        strokeWeight: outlineWeight,
+        strokeColor: '#fff',
+        zIndex: zIndex
+    };
+}
 
-    $("#groupMenuCategorias li a").on("click", function () {
-        var ethnicGroup = $(this).text();
-        pickButtonCategorias.text(ethnicGroup);
+function clickOnGeoJSON(e) {
+    content = '';
+    e.feature.forEachProperty(function (value, key) {
+        content += key + ': ' + value + '<br>';
     });
+    if (infowindow != null)
+        infowindow.close();
+    infowindow = new google.maps.InfoWindow()
+    infowindow.setContent(content);
+    infowindow.setPosition(e.latLng);
+    infowindow.setMap(mapa);
+    //if (infowindow != null)
+    //    infowindow.close();
+    //infowindow = new google.maps.InfoWindow({
+    //    content: ('<div style="width:50px;">' + e.feature.getProperty('POB1') + '</div>'), //'<b>Mouse Coordinates : </b><br><b>Latitude : </b>' + e.latLng.lat() + '<br><b>Longitude: </b>' + e.latLng.lng(),
+    //    position: e.latLng
+    //});
+    //infowindow.open(mapa);
+}
 
-    $("#groupMenuClientes li a").on("click", function () {
-        var ethnicGroup = $(this).text();
-        pickButtonClientes.text(ethnicGroup);
-    });
+function mouseInToRegion(e) {
+    // set the hover state so the setStyle function can change the border
+    e.feature.setProperty('state', 'hover');
+}
 
-    $("#groupMenuMetodologias li a").on("click", function () {
-        var ethnicGroup = $(this).text();
-        pickButtonMetodologias.text(ethnicGroup);
-    });
-
-    $("#groupMenuTipoLevantamientos li a").on("click", function () {
-        var ethnicGroup = $(this).text();
-        pickButtonTipoLevantamientos.text(ethnicGroup);
-    });
-})();
+function mouseOutOfRegion(e) {
+    // set the hover state so the setStyle function can change the border
+    e.feature.setProperty('state', 'normal');
+}
 
 function startButtonEvents() {
     document.getElementById('menuMonterrey'
@@ -197,19 +161,19 @@ function startButtonEvents() {
           zoomToCuernavaca();
       });
 
-    document.getElementById('menuToluca'
+    document.getElementById('menuTijuana'
       ).addEventListener('click', function () {
-          zoomToToluca();
+          zoomToTijuana();
       });
 
-    document.getElementById('menuPachuca'
+    document.getElementById('menuMexicali'
       ).addEventListener('click', function () {
-          zoomToPachuca();
+          zoomToMexicali();
       });
 
-    document.getElementById('menuCuatla'
+    document.getElementById('menuEnsenada'
       ).addEventListener('click', function () {
-          zoomToCuatla();
+          zoomToEnsenada();
       });
 }
 
@@ -217,88 +181,154 @@ function zoomToMonterrey() {
     var monterrey = new google.maps.LatLng(25.660263, -100.296556);
     mapa.setCenter(monterrey);
     mapa.setZoom(11);
+    // Load GeoJSON
+    mapa.data.loadGeoJson("/GeoJSON/NLUrbAgeb.txt");
 }
 
 function zoomToGuadalajara() {
     var guadalajara = new google.maps.LatLng(20.677807, -103.343825);
     mapa.setCenter(guadalajara);
     mapa.setZoom(11);
+    // Load GeoJSON
+    mapa.data.loadGeoJson("/GeoJSON/JLUrbAgeb.txt");
 }
 
 function zoomToCiudadMexico() {
     var ciudadmexico = new google.maps.LatLng(19.432604, -99.132935);
     mapa.setCenter(ciudadmexico);
     mapa.setZoom(11);
+    // Load GeoJSON
+    mapa.data.loadGeoJson("/GeoJSON/DFUrbAgeb.txt");
+    mapa.data.loadGeoJson("/GeoJSON/MEXUrbAgeb.txt");
 }
 
 function zoomToCuliacan() {
     var culiacan = new google.maps.LatLng(24.797933, -107.408148);
     mapa.setCenter(culiacan);
     mapa.setZoom(11);
+    // Load GeoJSON
+    mapa.data.loadGeoJson("/GeoJSON/SINUrbAgeb.txt");
 }
 
 function zoomToHermosillo() {
     var hermosillo = new google.maps.LatLng(29.081477, -110.962376);
     mapa.setCenter(hermosillo);
     mapa.setZoom(11);
+    // Load GeoJSON
+    mapa.data.loadGeoJson("/GeoJSON/SONUrbAgeb.txt");
 }
 
 function zoomToMazatlan() {
     var mazatlan = new google.maps.LatLng(23.252780, -106.412851);
     mapa.setCenter(mazatlan);
     mapa.setZoom(11);
+    // Load GeoJSON
+    mapa.data.loadGeoJson("/GeoJSON/SINUrbAgeb.txt");
 }
 
 function zoomToAguascalientes() {
     var aguascalientes = new google.maps.LatLng(21.889884, -102.291817);
     mapa.setCenter(aguascalientes);
     mapa.setZoom(11);
+    // Load GeoJSON
+    mapa.data.loadGeoJson("/GeoJSON/AGSUrbAgeb.txt");
 }
 
 function zoomToCelaya() {
     var celaya = new google.maps.LatLng(20.527456, -100.815476);
     mapa.setCenter(celaya);
     mapa.setZoom(11);
+    // Load GeoJSON
+    mapa.data.loadGeoJson("/GeoJSON/GTOUrbAgeb.txt");
 }
 
 function zoomToQueretaro() {
     var queretaro = new google.maps.LatLng(20.604621, -100.403162);
     mapa.setCenter(queretaro);
     mapa.setZoom(11);
+    // Load GeoJSON
+    mapa.data.loadGeoJson("/GeoJSON/QROUrbAgeb.txt");
 }
 
 function zoomToLeon() {
     var leon = new google.maps.LatLng(21.124897, -101.672011);
     mapa.setCenter(leon);
     mapa.setZoom(11);
+    // Load GeoJSON
+    mapa.data.loadGeoJson("/GeoJSON/GTOUrbAgeb.txt");
 }
 
 function zoomToSanLuisPotosi() {
     var sanluispotosi = new google.maps.LatLng(22.154587, -100.972575);
     mapa.setCenter(sanluispotosi);
     mapa.setZoom(11);
+    // Load GeoJSON
+    mapa.data.loadGeoJson("/GeoJSON/SLPUrbAgeb.txt");
 }
 
 function zoomToCuernavaca() {
     var cuernavaca = new google.maps.LatLng(18.933813, -99.226891);
     mapa.setCenter(cuernavaca);
     mapa.setZoom(11);
+    // Load GeoJSON
+    mapa.data.loadGeoJson("/GeoJSON/MORUrbAgeb.txt");
 }
 
-function zoomToToluca() {
-    var toluca = new google.maps.LatLng(19.291760, -99.645114);
-    mapa.setCenter(toluca);
+function zoomToTijuana() {
+    var tijuana = new google.maps.LatLng(32.498910, -116.952915);
+    mapa.setCenter(tijuana);
     mapa.setZoom(11);
+    // Load GeoJSON
+    mapa.data.loadGeoJson("/GeoJSON/BCUrbAgeb.txt");
 }
 
-function zoomToPachuca() {
-    var pachuca = new google.maps.LatLng(20.101134, -98.747308);
-    mapa.setCenter(pachuca);
+function zoomToMexicali() {
+    var mexicali = new google.maps.LatLng(32.612183, -115.443600);
+    mapa.setCenter(mexicali);
     mapa.setZoom(11);
+    // Load GeoJSON
+    mapa.data.loadGeoJson("/GeoJSON/BCUrbAgeb.txt");
 }
 
-function zoomToCuatla() {
-    var cuatla = new google.maps.LatLng(18.812774, -98.955508);
-    mapa.setCenter(cuatla);
+function zoomToEnsenada() {
+    var ensenada = new google.maps.LatLng(31.833004, -116.597505);
+    mapa.setCenter(ensenada);
     mapa.setZoom(11);
+    // Load GeoJSON
+    mapa.data.loadGeoJson("/GeoJSON/BCUrbAgeb.txt");
 }
+
+(function () {
+    "use strict";
+
+    var pickButtonCategorias = $("#pickButtonCategorias");
+    var pickButtonClientes = $("#pickButtonClientes");
+    var pickButtonMetodologias = $("#pickButtonMetodologias");
+    var pickButtonTipoLevantamientos = $("#pickButtonTipoLevantamientos");
+    var pickButtonCiudades = $("#pickButtonCiudades");
+
+    $("#groupMenuCategorias li a").on("click", function () {
+        var categorias = $(this).text();
+        pickButtonCategorias.text(categorias);
+    });
+
+    $("#groupMenuClientes li a").on("click", function () {
+        var clientes = $(this).text();
+        pickButtonClientes.text(clientes);
+    });
+
+    $("#groupMenuMetodologias li a").on("click", function () {
+        var metodologias = $(this).text();
+        pickButtonMetodologias.text(metodologias);
+    });
+
+    $("#groupMenuTipoLevantamientos li a").on("click", function () {
+        var tiposlevantamiento = $(this).text();
+        pickButtonTipoLevantamientos.text(tiposlevantamiento);
+    });
+
+    $("#groupMenuCiudades li a").on("click", function () {
+        var ciudades = $(this).text();
+        pickButtonCiudades.text(ciudades);
+    });
+})();
