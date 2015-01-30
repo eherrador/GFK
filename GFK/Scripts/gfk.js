@@ -180,7 +180,7 @@ function zoomToMonterrey() {
     var monterrey = new google.maps.LatLng(25.660263, -100.296556);
     mapa.setCenter(monterrey);
     mapa.setZoom(11);
-    
+
     if (otherfeatures != null) {
         for (var i = 0; i < otherfeatures.length; i++)
             mapa.data.remove(otherfeatures[i]);
@@ -191,7 +191,7 @@ function zoomToMonterrey() {
             mapa.data.remove(features[i]);
     }
 
-    var estado = $.getJSON("/GeoJSON/NLUrbAgeb.json");
+    var estado = $.getJSON("~/GeoJSON/NLUrbAgeb.json");
     estado.then(function (data) {
         features = mapa.data.addGeoJson(data);
     });
