@@ -191,7 +191,7 @@ function zoomToMonterrey() {
             mapa.data.remove(features[i]);
     }
 
-    var estado = $.getJSON("~/GeoJSON/NLUrbAgeb.json");
+    var estado = $.getJSON("http://gfk.azurewebsites.net/GeoJSON/NLUrbAgeb.json");
     estado.then(function (data) {
         features = mapa.data.addGeoJson(data);
     });
@@ -212,7 +212,7 @@ function zoomToGuadalajara() {
             mapa.data.remove(features[i]);
     }
     
-    var estado = $.getJSON("/GeoJSON/JLUrbAgeb.json");
+    var estado = $.getJSON("http://gfk.azurewebsites.net/GeoJSON/JLUrbAgeb.json");
     estado.then(function (data) {
         features = mapa.data.addGeoJson(data);
     });
@@ -233,8 +233,8 @@ function zoomToCiudadMexico() {
             mapa.data.remove(features[i]);
     }
 
-    var estadoDF = $.getJSON("/GeoJSON/DFUrbAgeb.json");
-    var estadoMX = $.getJSON("/GeoJSON/MEXUrbAgeb.json");
+    var estadoDF = $.getJSON("http://gfk.azurewebsites.net/GeoJSON/DFUrbAgeb.json");
+    var estadoMX = $.getJSON("http://gfk.azurewebsites.net/GeoJSON/MEXUrbAgeb.json");
     estadoDF.then(function (data1) {
         features = mapa.data.addGeoJson(data1);
     });
@@ -258,7 +258,7 @@ function zoomToCuliacan() {
             mapa.data.remove(features[i]);
     }
 
-    var estado = $.getJSON("/GeoJSON/SINUrbAgeb.json");
+    var estado = $.getJSON("http://gfk.azurewebsites.net/GeoJSON/SINUrbAgeb.json");
     estado.then(function (data) {
         features = mapa.data.addGeoJson(data);
     });
@@ -279,7 +279,7 @@ function zoomToHermosillo() {
             mapa.data.remove(features[i]);
     }
 
-    var estado = $.getJSON("/GeoJSON/SONUrbAgeb.json");
+    var estado = $.getJSON("http://gfk.azurewebsites.net/GeoJSON/SONUrbAgeb.json");
     estado.then(function (data) {
         features = mapa.data.addGeoJson(data);
     });
@@ -300,7 +300,7 @@ function zoomToMazatlan() {
             mapa.data.remove(features[i]);
     }
 
-    var estado = $.getJSON("/GeoJSON/SINUrbAgeb.json");
+    var estado = $.getJSON("http://gfk.azurewebsites.net/GeoJSON/SINUrbAgeb.json");
     estado.then(function (data) {
         features = mapa.data.addGeoJson(data);
     });
@@ -321,7 +321,7 @@ function zoomToAguascalientes() {
             mapa.data.remove(features[i]);
     }
 
-    var estado = $.getJSON("/GeoJSON/AGSUrbAgeb.json");
+    var estado = $.getJSON("http://gfk.azurewebsites.net/GeoJSON/AGSUrbAgeb.json");
     estado.then(function (data) {
         features = mapa.data.addGeoJson(data);
     });
@@ -342,7 +342,7 @@ function zoomToCelaya() {
             mapa.data.remove(features[i]);
     }
 
-    var estado = $.getJSON("/GeoJSON/GTOUrbAgeb.json");
+    var estado = $.getJSON("http://gfk.azurewebsites.net/GeoJSON/GTOUrbAgeb.json");
     estado.then(function (data) {
         features = mapa.data.addGeoJson(data);
     });
@@ -363,7 +363,7 @@ function zoomToQueretaro() {
             mapa.data.remove(features[i]);
     }
 
-    var estado = $.getJSON("/GeoJSON/QROUrbAgeb.json");
+    var estado = $.getJSON("http://gfk.azurewebsites.net/GeoJSON/QROUrbAgeb.json");
     estado.then(function (data) {
         features = mapa.data.addGeoJson(data);
     });
@@ -384,7 +384,7 @@ function zoomToLeon() {
             mapa.data.remove(features[i]);
     }
 
-    var estado = $.getJSON("/GeoJSON/GTOUrbAgeb.json");
+    var estado = $.getJSON("http://gfk.azurewebsites.net/GeoJSON/GTOUrbAgeb.json");
     estado.then(function (data) {
         features = mapa.data.addGeoJson(data);
     });
@@ -405,7 +405,7 @@ function zoomToSanLuisPotosi() {
             mapa.data.remove(features[i]);
     }
 
-    var estado = $.getJSON("/GeoJSON/SLPUrbAgeb.json");
+    var estado = $.getJSON("http://gfk.azurewebsites.net/GeoJSON/SLPUrbAgeb.json");
     estado.then(function (data) {
         features = mapa.data.addGeoJson(data);
     });
@@ -426,7 +426,7 @@ function zoomToCuernavaca() {
             mapa.data.remove(features[i]);
     }
 
-    var estado = $.getJSON("/GeoJSON/MORUrbAgeb.json");
+    var estado = $.getJSON("http://gfk.azurewebsites.net/GeoJSON/MORUrbAgeb.json");
     estado.then(function (data) {
         features = mapa.data.addGeoJson(data);
     });
@@ -447,7 +447,7 @@ function zoomToTijuana() {
             mapa.data.remove(features[i]);
     }
 
-    var estado = $.getJSON("/GeoJSON/BCUrbAgeb.json");
+    var estado = $.getJSON("http://gfk.azurewebsites.net/GeoJSON/BCUrbAgeb.json");
     estado.then(function (data) {
         features = mapa.data.addGeoJson(data);
     });
@@ -468,7 +468,7 @@ function zoomToMexicali() {
             mapa.data.remove(features[i]);
     }
 
-    var estado = $.getJSON("/GeoJSON/BCUrbAgeb.json");
+    var estado = $.getJSON("http://gfk.azurewebsites.net/GeoJSON/BCUrbAgeb.json");
     estado.then(function (data) {
         features = mapa.data.addGeoJson(data);
     });
@@ -489,7 +489,7 @@ function zoomToEnsenada() {
             mapa.data.remove(features[i]);
     }
 
-    var estado = $.getJSON("/GeoJSON/BCUrbAgeb.json");
+    var estado = $.getJSON("http://gfk.azurewebsites.net/GeoJSON/BCUrbAgeb.json");
     estado.then(function (data) {
         features = mapa.data.addGeoJson(data);
     });
