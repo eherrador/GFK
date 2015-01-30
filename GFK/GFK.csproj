@@ -195,7 +195,7 @@
     <None Include="GeoJSON\JLUrbAgeb.json" />
     <None Include="GeoJSON\MEXUrbAgeb.json" />
     <None Include="GeoJSON\MORUrbAgeb.json" />
-    <None Include="GeoJSON\NLUrbAgeb.json" />
+    <Content Include="GeoJSON\NLUrbAgeb.txt" />
     <None Include="GeoJSON\QROUrbAgeb.json" />
     <None Include="GeoJSON\SINUrbAgeb.json" />
     <None Include="GeoJSON\SLPUrbAgeb.json" />
