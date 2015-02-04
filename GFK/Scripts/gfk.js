@@ -102,16 +102,19 @@ function mouseOutOfRegion(e) {
 function startButtonEvents() {
     document.getElementById('menuMonterrey'
       ).addEventListener('click', function () {
+          //$("#ciudadesModal").modal("show");
           zoomToMonterrey();
       });
     
     document.getElementById('menuGuadalajara'
       ).addEventListener('click', function () {
+          //$("#ciudadesModal").modal("show");
           zoomToGuadalajara();
       });
 
     document.getElementById('menuCiudadMexico'
       ).addEventListener('click', function () {
+          //$("#ciudadesModal").modal("show");
           zoomToCiudadMexico();
       });
 
@@ -132,11 +135,13 @@ function startButtonEvents() {
 
     document.getElementById('menuAguascalientes'
       ).addEventListener('click', function () {
+          //$("#ciudadesModal").modal("show");
           zoomToAguascalientes();
       });
 
     document.getElementById('menuCelaya'
       ).addEventListener('click', function () {
+          //$("#ciudadesModal").modal("show");
           zoomToCelaya();
       });
 
@@ -192,8 +197,11 @@ function zoomToMonterrey() {
     }
 
     var estado = $.getJSON("/GeoJSON/NLUrbAgeb.txt");
-    estado.then(function (data) {
+    estado.done(function (data) {
         features = mapa.data.addGeoJson(data);
+        //alert("Los datos de los Ageb's han sido cargados");
+        //$("#ciudadesModal").modal("hide");
+        setTimeout(function () { $("#ciudadesModal").modal("hide") }, 3000);
     });
 }
 
@@ -213,8 +221,11 @@ function zoomToGuadalajara() {
     }
     
     var estado = $.getJSON("/GeoJSON/JLUrbAgeb.txt");
-    estado.then(function (data) {
+    estado.done(function (data) {
         features = mapa.data.addGeoJson(data);
+        //alert("Los datos de los Ageb's han sido cargados");
+        //$("#ciudadesModal").modal("hide");
+        setTimeout(function () { $("#ciudadesModal").modal("hide") }, 3000);
     });
 }
 
@@ -235,11 +246,14 @@ function zoomToCiudadMexico() {
 
     var estadoDF = $.getJSON("/GeoJSON/DFUrbAgeb.txt");
     var estadoMX = $.getJSON("/GeoJSON/MEXUrbAgeb.txt");
-    estadoDF.then(function (data1) {
+    estadoDF.done(function (data1) {
         features = mapa.data.addGeoJson(data1);
     });
-    estadoMX.then(function (data) {
+    estadoMX.done(function (data) {
         otherfeatures = mapa.data.addGeoJson(data);
+        //alert("Los datos de los Ageb's han sido cargados");
+        //$("#ciudadesModal").modal("hide");
+        setTimeout(function () { $("#ciudadesModal").modal("hide") }, 3000);
     });
 }
 
@@ -259,8 +273,9 @@ function zoomToCuliacan() {
     }
 
     var estado = $.getJSON("/GeoJSON/SINUrbAgeb.txt");
-    estado.then(function (data) {
+    estado.done(function (data) {
         features = mapa.data.addGeoJson(data);
+        setTimeout(function () { $("#ciudadesModal").modal("hide") }, 3000);
     });
 }
 
@@ -280,8 +295,9 @@ function zoomToHermosillo() {
     }
 
     var estado = $.getJSON("/GeoJSON/SONUrbAgeb.txt");
-    estado.then(function (data) {
+    estado.done(function (data) {
         features = mapa.data.addGeoJson(data);
+        setTimeout(function () { $("#ciudadesModal").modal("hide") }, 3000);
     });
 }
 
@@ -301,8 +317,9 @@ function zoomToMazatlan() {
     }
 
     var estado = $.getJSON("/GeoJSON/SINUrbAgeb.txt");
-    estado.then(function (data) {
+    estado.done(function (data) {
         features = mapa.data.addGeoJson(data);
+        setTimeout(function () { $("#ciudadesModal").modal("hide") }, 3000);
     });
 }
 
@@ -322,8 +339,11 @@ function zoomToAguascalientes() {
     }
 
     var estado = $.getJSON("/GeoJSON/AGSUrbAgeb.txt");
-    estado.then(function (data) {
+    estado.done(function (data) {
         features = mapa.data.addGeoJson(data);
+        //alert("Los datos de los Ageb's han sido cargados");
+        //$("#ciudadesModal").modal("hide");
+        setTimeout(function () { $("#ciudadesModal").modal("hide") }, 3000);
     });
 }
 
@@ -341,10 +361,13 @@ function zoomToCelaya() {
         for (var i = 0; i < features.length; i++)
             mapa.data.remove(features[i]);
     }
-
+    
     var estado = $.getJSON("/GeoJSON/GTOUrbAgeb.txt");
-    estado.then(function (data) {
+    estado.done(function (data) {
         features = mapa.data.addGeoJson(data);
+        //alert("Los datos de los Ageb's han sido cargados");
+        //$("#ciudadesModal").modal("hide");
+        setTimeout(function () { $("#ciudadesModal").modal("hide") }, 3000);
     });
 }
 
@@ -364,8 +387,9 @@ function zoomToQueretaro() {
     }
 
     var estado = $.getJSON("/GeoJSON/QROUrbAgeb.txt");
-    estado.then(function (data) {
+    estado.done(function (data) {
         features = mapa.data.addGeoJson(data);
+        setTimeout(function () { $("#ciudadesModal").modal("hide") }, 3000);
     });
 }
 
@@ -385,8 +409,9 @@ function zoomToLeon() {
     }
 
     var estado = $.getJSON("/GeoJSON/GTOUrbAgeb.txt");
-    estado.then(function (data) {
+    estado.done(function (data) {
         features = mapa.data.addGeoJson(data);
+        setTimeout(function () { $("#ciudadesModal").modal("hide") }, 3000);
     });
 }
 
@@ -406,8 +431,9 @@ function zoomToSanLuisPotosi() {
     }
 
     var estado = $.getJSON("/GeoJSON/SLPUrbAgeb.txt");
-    estado.then(function (data) {
+    estado.done(function (data) {
         features = mapa.data.addGeoJson(data);
+        setTimeout(function () { $("#ciudadesModal").modal("hide") }, 3000);
     });
 }
 
@@ -427,8 +453,9 @@ function zoomToCuernavaca() {
     }
 
     var estado = $.getJSON("/GeoJSON/MORUrbAgeb.txt");
-    estado.then(function (data) {
+    estado.done(function (data) {
         features = mapa.data.addGeoJson(data);
+        setTimeout(function () { $("#ciudadesModal").modal("hide") }, 3000);
     });
 }
 
@@ -448,8 +475,9 @@ function zoomToTijuana() {
     }
 
     var estado = $.getJSON("/GeoJSON/BCUrbAgeb.txt");
-    estado.then(function (data) {
+    estado.done(function (data) {
         features = mapa.data.addGeoJson(data);
+        setTimeout(function () { $("#ciudadesModal").modal("hide") }, 3000);
     });
 }
 
@@ -469,8 +497,9 @@ function zoomToMexicali() {
     }
 
     var estado = $.getJSON("/GeoJSON/BCUrbAgeb.txt");
-    estado.then(function (data) {
+    estado.done(function (data) {
         features = mapa.data.addGeoJson(data);
+        setTimeout(function () { $("#ciudadesModal").modal("hide") }, 3000);
     });
 }
 
@@ -490,8 +519,9 @@ function zoomToEnsenada() {
     }
 
     var estado = $.getJSON("/GeoJSON/BCUrbAgeb.txt");
-    estado.then(function (data) {
+    estado.done(function (data) {
         features = mapa.data.addGeoJson(data);
+        setTimeout(function () { $("#ciudadesModal").modal("hide") }, 3000);
     });
 }
 

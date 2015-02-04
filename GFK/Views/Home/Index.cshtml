@@ -10,15 +10,15 @@
 <hr>
 
 <!-- Modal para Ciudades -->
-<div class="modal fade" id="ciudadesModal" tabindex="-1" role="dialog" aria-labelledby="ciudadesModalLabel" aria-hidden="true">
+<div class="modal fade" id="ciudadesModal" @*tabindex="-1" role="dialog" aria-labelledby="ciudadesModalLabel" aria-hidden="true"*@>
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="ciudadesModalLabel">Se está cargando la información de los AGEB's....</h4>
             </div>
-            <div class="modal-body">
-                <div class="progress">
+            <div class="modal-body" id="modalBody">
+                <div class="progress" id="barraProgreso">
                     <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
                         <span class="sr-only">100% Complete (success)</span>
                     </div>
