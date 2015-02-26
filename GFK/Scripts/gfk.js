@@ -329,6 +329,23 @@ function zoomToAguascalientes() {
             mapa.data.remove(features[i]);
     }
 
+
+    /*
+    var layer = new google.maps.FusionTablesLayer({
+        heatmap: { enabled: false },
+        query: {
+            select: "col9",
+            from: "15uc0wItaBX-OluF8Cex-T-1s_n-aHmV9EMRFvd-s",
+            where: ""
+        },
+        options: {
+            styleId: 2,
+            templateId: 2
+        }
+    });
+    layer.setMap(mapa);
+    setTimeout(function () { $("#ciudadesModal").modal("hide") }, 2000);*/
+
     var estado = $.getJSON("/GeoJSON/AGSUrbAgeb.txt");
     estado.done(function (data) {
         features = mapa.data.addGeoJson(data);
