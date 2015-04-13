@@ -23,8 +23,17 @@ namespace GFK
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                      "~/Scripts/angular.min.js",
+                      //"~/Scripts/ui-bootstrap-tpls-0.12.1.min.js",
+                      "~/Scripts/angular-resource.min.js",
+                      "~/Scripts/angular-route.min.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/gfkscripts").Include(
-                      "~/Scripts/gfk.js"));
+                      "~/Scripts/app.js",
+                      "~/Scripts/gfkService.js",
+                      "~/Scripts/gfkController.js",
+                      "~/Scripts/gfkmapa.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min-united.css",

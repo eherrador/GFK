@@ -1,7 +1,20 @@
 ﻿@{
     ViewBag.Title = "About";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<form>
+    <div class="form-group" ng-controller="CiudadesCtrl">
+        <select ng-model="ciudadSeleccionada" ng-options="ciudad as ciudad.NombreCiudad for ciudad in ciudades">
+            <option value="">-- Selecciona una ciudad --</option>
+        </select>
+        {{ciudadSeleccionada}}
+    </div>
+    <hr />
+    <div class="form-group" ng-controller="CategoriasCtrl">
+        <select ng-model="categoriaSeleccionada" ng-options="categoria as categoria.NombreCategoria for categoria in categorias">
+            <option value="">-- Selecciona una categoria --</option>
+        </select>
+        {{categoriaSeleccionada}}
+    </div>
+</form>
+

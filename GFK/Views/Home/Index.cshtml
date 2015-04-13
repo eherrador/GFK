@@ -129,7 +129,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div ng-controller="gfkController" class="form-group">
                         <div class="btn-group">
                             <button id="pickButtonCiudades" type="button" class="btn btn-default">Selecciona la ciudad...</button>
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -137,6 +137,7 @@
                                 <span class="sr-only">Toggle Dropdown</span>
                             </button>
                             <ul id="groupMenuCiudades" class="dropdown-menu" role="menu">
+                                @*<li ng-repeat="ciudad in ciudades" role="presentation"><a role="menuitem" href="#menuItemCiudades">{{ciudad.NombreCiudad}}</a></li>*@
                                 <li role="presentation"><a role="menuitem" href="#menuItemCiudades">Monterrey</a></li>
                                 <li role="presentation"><a role="menuitem" href="#menuItemCiudades">Guadalajara</a></li>
                                 <li role="presentation"><a role="menuitem" href="#menuItemCiudades">DF y Área Metropolitana</a></li>
