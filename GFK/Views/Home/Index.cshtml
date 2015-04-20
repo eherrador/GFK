@@ -35,181 +35,162 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Nuevo Proyecto</h4>
+                <h4 class="modal-title" id="myModalLabel">Nuevo Proyecto - NSE Regla AMAI 8x7</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" ng-controller="NuevoProyectoCtrl">
                 <form>
-                    <div class="form-group">
-                        @*<label for="numProyecto">Número de Proyecto</label>*@
-                        <input type="text" maxlength="6" class="form-control" id="numProyecto" placeholder="Número de Proyecto">
-                    </div>
-                    <div class="form-group">
-                        @*<label for="nombreProyecto">Nombre de Proyecto</label>*@
-                        <input type="text" maxlength="50" class="form-control" id="nombreProyecto" placeholder="Nombre de Proyecto">
-                    </div>
-                    <div class="form-group">
-                        @*<label for="pickButtonCategorias">Categoría</label>*@
-                        <div class="btn-group">
-                            <button id="pickButtonCategorias" type="button" class="btn btn-default">Selecciona una categoría...</button>
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="caret"></span>
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-
-                            <ul id="groupMenuCategorias" class="dropdown-menu" role="menu">
-                                <li role="presentation"><a role="menuitem" href="#menuItemCategorias">Alimentos</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCategorias">Bebidas</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCategorias">Tecnología & IT</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCategorias">Automotriz</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCategorias">Productos para la limpieza del hogar</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCategorias">Pañales</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCategorias">Protección femenina</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCategorias">Respiratorios</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCategorias">Gastrointestinales</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCategorias">Anti transpirantes y Desodorantes</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCategorias">Entretenimiento</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCategorias">Instituciones financieras & Bancos</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCategorias">Comida para mascotas</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCategorias">Belleza</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCategorias">Cosméticos & Fragancias</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCategorias">Retail</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCategorias">Ferreterías & Herramientas</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCategorias">Viajes, Hoteles, Restaurantes y Trasportación</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCategorias">Ropa, Calzado y Accesorios personales</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCategorias">Construcción</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCategorias">Miscelaneos</a></li>
-                            </ul>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6">
+                            <div class="form-group">
+                                <label for="numProyecto">Número de Proyecto</label>
+                                <input type="text" required maxlength="6" class="form-control" ng-model="numProyecto" id="numProyecto" placeholder="Número de Proyecto">
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-6">
+                            <div class="form-group">
+                                <label for="nombreProyecto">Nombre de Proyecto</label>
+                                <input type="text" required maxlength="50" class="form-control" ng-model="nombreProyecto" id="nombreProyecto" placeholder="Nombre de Proyecto">
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="btn-group">
-                            <button id="pickButtonClientes" type="button" class="btn btn-default">Selecciona un cliente...</button>
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="caret"></span>
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <ul id="groupMenuClientes" class="dropdown-menu" role="menu">
-                                <li role="presentation"><a role="menuitem" href="#menuItemClientes">Cliente 1</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemClientes">Cliente 2</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemClientes">Cliente 3</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemClientes">Cliente 4</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemClientes">Cliente 5</a></li>
-                            </ul>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6">
+                            <div class="form-group" @*ng-controller="CategoriasCtrl"*@>
+                                <select required ng-model="categoriaSeleccionada" ng-options="categoria as categoria.NombreCategoria for categoria in categorias">
+                                    <option value="">-- Selecciona una categoria --</option>
+                                </select>
+                                @*{{categoriaSeleccionada}}*@
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="btn-group">
-                            <button id="pickButtonMetodologias" type="button" class="btn btn-default">Selecciona una metodología de estudio...</button>
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="caret"></span>
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <ul id="groupMenuMetodologias" class="dropdown-menu" role="menu">
-                                <li role="presentation"><a role="menuitem" href="#menuItemMetodologias">Metodologia 1</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemMetodologias">Metodologia 2</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemMetodologias">Metodologia 3</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemMetodologias">Metodologia 4</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemMetodologias">Metodologia 5</a></li>
-                            </ul>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6">
+                            <div class="form-group" @*ng-controller="ClientesCtrl"*@>
+                                <select required ng-model="clienteSeleccionado" ng-options="cliente as cliente.NombreCliente for cliente in clientes">
+                                    <option value="">-- Selecciona un cliente --</option>
+                                </select>
+                                @*{{clienteSeleccionado}}*@
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-6">
+                            <div class="form-group" @*ng-controller="CiudadesCtrl"*@>
+                                <select required ng-model="ciudadSeleccionada" ng-options="ciudad as ciudad.NombreCiudad for ciudad in ciudades">
+                                    <option value="">-- Selecciona una ciudad --</option>
+                                </select>
+                                @*{{ciudadSeleccionada}}*@
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="btn-group">
-                            <button id="pickButtonTipoLevantamientos" type="button" class="btn btn-default">Selecciona el tipo de levantamiento de campo...</button>
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="caret"></span>
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <ul id="groupMenuTipoLevantamientos" class="dropdown-menu" role="menu">
-                                <li role="presentation"><a role="menuitem" href="#menuItemTipoLevantamientos">Tipo Levantamiento 1</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemTipoLevantamientos">Tipo Levantamiento 2</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemTipoLevantamientos">Tipo Levantamiento 3</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemTipoLevantamientos">Tipo Levantamiento 4</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemTipoLevantamientos">Tipo Levantamiento 5</a></li>
-                            </ul>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6">
+                            <div class="form-group" @*ng-controller="MetodologiasCtrl"*@>
+                                <select required ng-model="metodologiaSeleccionada" ng-options="metodologia as metodologia.NombreMetodologia for metodologia in metodologias">
+                                    <option value="">-- Selecciona una metodologia --</option>
+                                </select>
+                                @*{{metodologiaSeleccionada}}*@
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-6">
+                            <div class="form-group" @*ng-controller="LevantamientosCtrl"*@>
+                                <select required ng-model="levantamientoSeleccionado" ng-options="levantamiento as levantamiento.NombreLevantamiento for levantamiento in levantamientos">
+                                    <option value="">-- Selecciona un levantamiento --</option>
+                                </select>
+                                @*{{levantamientoSeleccionado}}*@
+                            </div>
                         </div>
                     </div>
-                    <div ng-controller="gfkController" class="form-group">
-                        <div class="btn-group">
-                            <button id="pickButtonCiudades" type="button" class="btn btn-default">Selecciona la ciudad...</button>
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="caret"></span>
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <ul id="groupMenuCiudades" class="dropdown-menu" role="menu">
-                                @*<li ng-repeat="ciudad in ciudades" role="presentation"><a role="menuitem" href="#menuItemCiudades">{{ciudad.NombreCiudad}}</a></li>*@
-                                <li role="presentation"><a role="menuitem" href="#menuItemCiudades">Monterrey</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCiudades">Guadalajara</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCiudades">DF y Área Metropolitana</a></li>
-                                <li class="divider"></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCiudades">Culiacán</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCiudades">Hermosillo</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCiudades">Mazatlán</a></li>
-                                <li class="divider"></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCiudades">Aguascalientes</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCiudades">Celaya</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCiudades">Querétaro</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCiudades">León</a></li>
-                                <li class="divider"></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCiudades">San Luis Potosí</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCiudades">Cuernavaca</a></li>
-                                <li class="divider"></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCiudades">Tijuana</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCiudades">Mexicali</a></li>
-                                <li role="presentation"><a role="menuitem" href="#menuItemCiudades">Ensenada</a></li>
-                            </ul>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6">
+                            <div class="form-group">
+                                <label for="numProyecto">Muestra Total</label>
+                                <input type="number" required min="10" max="1000" ng-model="muestraTotal" class="form-control" id="muestraTotal" placeholder="Muestra Total">
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-6">
+                            <div class="form-group">
+                                <label for="numProyecto">Número de Entrevistas por Punto</label>
+                                <input type="number" required min="1" max="1000" ng-model="entrevistasPorPunto" class="form-control" id="numEntrevistasPorPunto" placeholder="Número de Entrevistas por Punto">
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <input type="number" class="form-control" id="muestraTotal" placeholder="Muestra Total">
+                    @*<hr />*@
+                    @*<h5>Regla AMAI, NSE 8x7</h5>*@
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6">
+                            <div class="form-group">
+                                <label for="nombreProyecto">A/B(%)</label>
+                                <input min="1" max="100" type="number" class="form-control" ng-model="numAB" id="numAB" placeholder="A/B(%)">
+                                Entrevistas <span id="badgeEntrevistasNumAB" class="badge">{{eAB}}</span>
+                                &nbsp;&nbsp;Agebs <span id="badgeAgebsNumAB" class="badge">{{aAB}}</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-6">
+                            <div class="form-group">
+                                <label for="nombreProyecto">C+(%)</label>
+                                <input min="1" max="100" type="number" class="form-control" ng-model="numCPlus" id="numCPlus" placeholder="C+(%)">
+                                Entrevistas <span id="badgeEntrevistasNumCPlus" class="badge">{{eCPlus}}</span>
+                                &nbsp;&nbsp;Agebs <span id="badgeAgebsNumCPlus" class="badge">{{aCPlus}}</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input type="number" class="form-control" id="numEntrevistasPorPunto" placeholder="Número de Entrevistas por Punto">
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6">
+                            <div class="form-group">
+                                <label for="nombreProyecto">C(%)</label>
+                                <input min="1" max="100" type="number" class="form-control" ng-model="numC" id="numC" placeholder="C(%)">
+                                Entrevistas <span id="badgeEntrevistasNumC" class="badge">{{eC}}</span>
+                                &nbsp;&nbsp;Agebs <span id="badgeAgebsNumC" class="badge">{{aC}}</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-6">
+                            <div class="form-group">
+                                <label for="nombreProyecto">C-(%)</label>
+                                <input min="1" max="100" type="number" class="form-control" ng-model="numCMinus" id="numCMinus" placeholder="C-(%)">
+                                Entrevistas <span id="badgeEntrevistasNumCMinus" class="badge">{{eCMinus}}</span>
+                                &nbsp;&nbsp;Agebs <span id="badgeAgebsNumCMinus" class="badge">{{aCMinus}}</span>
+                            </div>
+                        </div>
                     </div>
-                    <hr />
-                    <h5>Regla AMAI, NSE 8x7</h5>
-                    <div class="form-group">
-                        <input type="number" class="form-control" id="numAB" placeholder="A/B(%)">
-                        Entrevistas <span id="badgeEntrevistasNumAB" class="badge">0</span>
-                        &nbsp;&nbsp;Agebs <span id="badgeAgebsNumAB" class="badge">0</span>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6">
+                            <div class="form-group">
+                                <label for="nombreProyecto">D-(%)</label>
+                                <input min="1" max="100" type="number" class="form-control" ng-model="numDMinus" id="numDMinus" placeholder="D-(%)">
+                                Entrevistas <span id="badgeEntrevistasNumDMinus" class="badge">{{eDMinus}}</span>
+                                &nbsp;&nbsp;Agebs <span id="badgeAgebsNumDMinus" class="badge">{{aDMinus}}</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-6">
+                            <div class="form-group">
+                                <label for="nombreProyecto">D+(%)</label>
+                                <input min="1" max="100" type="number" class="form-control" ng-model="numDPlus" id="numDPlus" placeholder="D+(%)">
+                                Entrevistas <span id="badgeEntrevistasNumDPlus" class="badge">{{eDPlus}}</span>
+                                &nbsp;&nbsp;Agebs <span id="badgeAgebsNumDPlus" class="badge">{{aDPlus}}</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input type="number" class="form-control" id="numCPlus" placeholder="C+(%)">
-                        Entrevistas <span id="badgeEntrevistasNumCPlus" class="badge">110</span>
-                        &nbsp;&nbsp;Agebs <span id="badgeAgebsNumCPlus" class="badge">9</span>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6">
+                            <div class="form-group">
+                                <label for="nombreProyecto">E(%)</label>
+                                <input min="1" max="100" type="number" class="form-control" ng-model="numE" id="numE" placeholder="E(%)">
+                                Entrevistas <span id="badgeEntrevistasNumE" class="badge">{{eE}}</span>
+                                &nbsp;&nbsp;Agebs <span id="badgeAgebsNumE" class="badge">{{aE}}</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-3 col-md-3 pull-right">
+                            <button type="submit" class="btn btn-success btn-sm">Generar proyecto</button>
+                            @*<button type="submit" class="btn btn-success btn-lg btn-block">Generar proyecto</button>*@
+                        </div>
+                        <div class="col-xs-3 col-md-3 pull-right">
+                            <button type="button" ng-click="SimulaProyecto()" class="btn btn-warning btn-sm">Simular proyecto</button>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input type="number" class="form-control" id="numC" placeholder="C(%)">
-                        Entrevistas <span id="badgeEntrevistasNumC" class="badge">110</span>
-                        &nbsp;&nbsp;Agebs <span id="badgeAgebsNumC" class="badge">9</span>
-                    </div>
-                    <div class="form-group">
-                        <input type="number" class="form-control" id="numCMinus" placeholder="C-(%)">
-                        Entrevistas <span id="badgeEntrevistasNumCMinus" class="badge">110</span>
-                        &nbsp;&nbsp;Agebs <span id="badgeAgebsNumCMinus" class="badge">9</span>
-                    </div>
-                    <div class="form-group">
-                        <input type="number" class="form-control" id="numDMinus" placeholder="D-(%)">
-                        Entrevistas <span id="badgeEntrevistasNumDMinus" class="badge">110</span>
-                        &nbsp;&nbsp;Agebs <span id="badgeAgebsNumDMinus" class="badge">9</span>
-                    </div>
-                    <div class="form-group">
-                        <input type="number" class="form-control" id="numDPlus" placeholder="D+(%)">
-                        Entrevistas <span id="badgeEntrevistasNumDPlus" class="badge">110</span>
-                        &nbsp;&nbsp;Agebs <span id="badgeAgebsNumDPlus" class="badge">9</span>
-                    </div>
-                    <div class="form-group">
-                        <input type="number" class="form-control" id="numE" placeholder="E(%)">
-                        Entrevistas <span id="badgeEntrevistasNumE" class="badge">110</span>
-                        &nbsp;&nbsp;Agebs <span id="badgeAgebsNumE" class="badge">9</span>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Generar proyecto</button>
                 </form>
             </div>
-            <div class="modal-footer">
+            @*<div class="modal-footer">
                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-                @*<button type="submit" class="btn btn-primary">Generar proyecto</button>*@
-            </div>
+            </div>*@
         </div>
     </div>
 </div>

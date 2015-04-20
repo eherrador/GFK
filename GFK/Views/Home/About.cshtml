@@ -16,5 +16,26 @@
         </select>
         {{categoriaSeleccionada}}
     </div>
+    <hr />
+    <div class="form-group" ng-controller="MetodologiasCtrl">
+        <select ng-model="metodologiaSeleccionada" ng-options="metodologia as metodologia.NombreMetodologia for metodologia in metodologias">
+            <option value="">-- Selecciona una metodologia --</option>
+        </select>
+        {{metodologiaSeleccionada}}
+    </div>
+    <hr />
+    <div class="form-group" ng-controller="ClientesCtrl">
+        <select ng-model="clienteSeleccionado" ng-options="cliente as cliente.NombreCliente for cliente in clientes">
+            <option value="">-- Selecciona un cliente --</option>
+        </select>
+        {{clienteSeleccionado}}
+    </div>
+    <hr />
+    <div class="form-group" ng-controller="LevantamientosCtrl">
+        <select ng-model="levantamientoSeleccionado" ng-options="levantamiento as levantamiento.NombreLevantamiento for levantamiento in levantamientos">
+            <option value="">-- Selecciona un levantamiento --</option>
+        </select>
+        {{levantamientoSeleccionado}}
+    </div>
 </form>
 

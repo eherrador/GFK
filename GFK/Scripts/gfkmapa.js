@@ -15,7 +15,7 @@ $(document).ready(function ($) {
 
 function initMap() {
     //Enabling new cartography and themes
-    google.maps.visualRefresh = true;
+    //google.maps.visualRefresh = true;
 
     //Setting starting options of map
     var mapOptions = {
