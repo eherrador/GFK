@@ -38,7 +38,7 @@
                 <h4 class="modal-title" id="myModalLabel">Nuevo Proyecto - NSE Regla AMAI 8x7</h4>
             </div>
             <div class="modal-body" ng-controller="NuevoProyectoCtrl">
-                <form>
+                <form name="NuevoProyectoForm" ng-submit="CreaNuevoProyecto()">
                     <div class="row">
                         <div class="col-xs-6 col-md-6">
                             <div class="form-group">
@@ -55,47 +55,42 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-6 col-md-6">
-                            <div class="form-group" @*ng-controller="CategoriasCtrl"*@>
+                            <div class="form-group">
                                 <select required ng-model="categoriaSeleccionada" ng-options="categoria as categoria.NombreCategoria for categoria in categorias">
                                     <option value="">-- Selecciona una categoria --</option>
                                 </select>
-                                @*{{categoriaSeleccionada}}*@
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-6 col-md-6">
-                            <div class="form-group" @*ng-controller="ClientesCtrl"*@>
+                            <div class="form-group">
                                 <select required ng-model="clienteSeleccionado" ng-options="cliente as cliente.NombreCliente for cliente in clientes">
                                     <option value="">-- Selecciona un cliente --</option>
                                 </select>
-                                @*{{clienteSeleccionado}}*@
                             </div>
                         </div>
                         <div class="col-xs-6 col-md-6">
-                            <div class="form-group" @*ng-controller="CiudadesCtrl"*@>
+                            <div class="form-group">
                                 <select required ng-model="ciudadSeleccionada" ng-options="ciudad as ciudad.NombreCiudad for ciudad in ciudades">
                                     <option value="">-- Selecciona una ciudad --</option>
                                 </select>
-                                @*{{ciudadSeleccionada}}*@
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-6 col-md-6">
-                            <div class="form-group" @*ng-controller="MetodologiasCtrl"*@>
+                            <div class="form-group">
                                 <select required ng-model="metodologiaSeleccionada" ng-options="metodologia as metodologia.NombreMetodologia for metodologia in metodologias">
                                     <option value="">-- Selecciona una metodologia --</option>
                                 </select>
-                                @*{{metodologiaSeleccionada}}*@
                             </div>
                         </div>
                         <div class="col-xs-6 col-md-6">
-                            <div class="form-group" @*ng-controller="LevantamientosCtrl"*@>
+                            <div class="form-group">
                                 <select required ng-model="levantamientoSeleccionado" ng-options="levantamiento as levantamiento.NombreLevantamiento for levantamiento in levantamientos">
                                     <option value="">-- Selecciona un levantamiento --</option>
                                 </select>
-                                @*{{levantamientoSeleccionado}}*@
                             </div>
                         </div>
                     </div>
@@ -113,8 +108,6 @@
                             </div>
                         </div>
                     </div>
-                    @*<hr />*@
-                    @*<h5>Regla AMAI, NSE 8x7</h5>*@
                     <div class="row">
                         <div class="col-xs-6 col-md-6">
                             <div class="form-group">
@@ -180,7 +173,6 @@
                         </div>
                         <div class="col-xs-3 col-md-3 pull-right">
                             <button type="submit" class="btn btn-success btn-sm">Generar proyecto</button>
-                            @*<button type="submit" class="btn btn-success btn-lg btn-block">Generar proyecto</button>*@
                         </div>
                         <div class="col-xs-3 col-md-3 pull-right">
                             <button type="button" ng-click="SimulaProyecto()" class="btn btn-warning btn-sm">Simular proyecto</button>
@@ -188,9 +180,6 @@
                     </div>
                 </form>
             </div>
-            @*<div class="modal-footer">
-                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-            </div>*@
         </div>
     </div>
 </div>

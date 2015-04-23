@@ -38,4 +38,11 @@
           });
       }]);
 
+    GFKServices.factory('NvoProyecto', ['$resource',
+      function ($resource) {
+          return $resource('/api/nvoproyecto/', { '': '@proyecto' }, {
+              save: { method: 'POST', params: {} }
+          });
+      }]);
+
 })();

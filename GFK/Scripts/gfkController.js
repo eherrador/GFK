@@ -3,8 +3,10 @@
 
     var GFKControllers = angular.module('GFKControllers', []);
 
-    GFKControllers.controller('NuevoProyectoCtrl', ['$scope', 'Ciudades', 'Categorias', 'Metodologias', 'Clientes', 'Levantamientos',
-        function NuevoProyectoCtrl($scope, Ciudades, Categorias, Metodologias, Clientes, Levantamientos) {
+    GFKControllers.controller('NuevoProyectoCtrl', ['$scope', 'Ciudades', 'Categorias', 'Metodologias', 'Clientes', 'Levantamientos', 'NvoProyecto',
+        function NuevoProyectoCtrl($scope, Ciudades, Categorias, Metodologias, Clientes, Levantamientos, NvoProyecto) {
+            //$scope.proyecto = {};
+
             $scope.ciudades = Ciudades.query();
             $scope.categorias = Categorias.query();
             $scope.metodologias = Metodologias.query();
@@ -67,6 +69,50 @@
                 else {
                     alert("El campo de muestra total debe tener un valor igual o mayor a 10");
                 }
+            };
+
+            
+            $scope.CreaNuevoProyecto = function () {
+                this.proyecto = {};
+
+                this.proyecto.numProyecto = this.numProyecto;
+                this.proyecto.nombreProyecto = this.nombreProyecto;
+                this.proyecto.categoriaSeleccionadaID = this.categoriaSeleccionada.ID;
+                this.proyecto.clienteSeleccionadoID = this.clienteSeleccionado.ID;
+                this.proyecto.ciudadSeleccionadaID = this.ciudadSeleccionada.ID;
+                this.proyecto.metodologiaSeleccionadaID = this.metodologiaSeleccionada.ID;
+                this.proyecto.levantamientoSeleccionadoID = this.levantamientoSeleccionado.ID;
+                this.proyecto.muestraTotal = this.muestraTotal;
+                this.proyecto.entrevistasPorPunto = this.entrevistasPorPunto;
+
+                this.proyecto.numAB = this.numAB;
+                this.proyecto.numCPlus = this.numCPlus;
+                this.proyecto.numC = this.numC;
+                this.proyecto.numCMinus = this.numCMinus;
+                this.proyecto.numDMinus = this.numDMinus;
+                this.proyecto.numDPlus = this.numDMinus;
+                this.proyecto.numE = this.numE;
+                
+                this.proyecto.eAB = this.eAB;
+                this.proyecto.eCPlus = this.eCPlus;
+                this.proyecto.eC = this.eC;
+                this.proyecto.eCMinus = this.eCMinus;
+                this.proyecto.eDMinus = this.eDMinus;
+                this.proyecto.eDPlus = this.eDPlus;
+                this.proyecto.eE = this.eE;
+
+                this.proyecto.eAB = this.aAB;
+                this.proyecto.aCPlus = this.aCPlus;
+                this.proyecto.aC = this.aC;
+                this.proyecto.aCMinus = this.aCMinus;
+                this.proyecto.aDMinus = this.aDMinus;
+                this.proyecto.aDPlus = this.aDPlus;
+                this.proyecto.eE = this.aE;
+
+                //alert(this.proyecto.numProyecto + "  " + this.proyecto.nombreProyecto + " " + this.proyecto.numC + " " + this.proyecto.categoriaSeleccionadaID); // + " " + proyecto.numC);
+
+                NvoProyecto.save({ proyecto: "edgar" }); //this.proyecto});
+                //$scope.proyecto = {};
             };
         }
     ]);

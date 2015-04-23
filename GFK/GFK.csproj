@@ -181,6 +181,7 @@
     <Compile Include="Controllers\LevantamientosController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MetodologiasController.cs" />
+    <Compile Include="Controllers\NvoProyectoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

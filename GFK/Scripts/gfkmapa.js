@@ -110,6 +110,16 @@ function startButtonEvents() {
           zoomToGuadalajara();
       });
 
+    document.getElementById('menuDF'
+      ).addEventListener('click', function () {
+          zoomToDF();
+      });
+
+    document.getElementById('menuEdoMex'
+      ).addEventListener('click', function () {
+          zoomToEdoMex();
+      });
+
     document.getElementById('menuCiudadMexico'
       ).addEventListener('click', function () {
           zoomToCiudadMexico();
@@ -214,6 +224,50 @@ function zoomToGuadalajara() {
     }
     
     var estado = $.getJSON("/GeoJSON/JLUrbAgeb.txt");
+    estado.done(function (data) {
+        features = mapa.data.addGeoJson(data);
+        setTimeout(function () { $("#ciudadesModal").modal("hide") }, 3000);
+    });
+}
+
+function zoomToDF() {
+    var df = new google.maps.LatLng(19.432604, -99.132935);
+    mapa.setCenter(df);
+    mapa.setZoom(11);
+
+    if (otherfeatures != null) {
+        for (var i = 0; i < otherfeatures.length; i++)
+            mapa.data.remove(otherfeatures[i]);
+    }
+
+    if (features != null) {
+        for (var i = 0; i < features.length; i++)
+            mapa.data.remove(features[i]);
+    }
+
+    var estado = $.getJSON("/GeoJSON/DFUrbAgeb.txt");
+    estado.done(function (data) {
+        features = mapa.data.addGeoJson(data);
+        setTimeout(function () { $("#ciudadesModal").modal("hide") }, 3000);
+    });
+}
+
+function zoomToDF() {
+    var df = new google.maps.LatLng(19.432604, -99.132935);
+    mapa.setCenter(df);
+    mapa.setZoom(11);
+
+    if (otherfeatures != null) {
+        for (var i = 0; i < otherfeatures.length; i++)
+            mapa.data.remove(otherfeatures[i]);
+    }
+
+    if (features != null) {
+        for (var i = 0; i < features.length; i++)
+            mapa.data.remove(features[i]);
+    }
+
+    var estado = $.getJSON("/GeoJSON/MEXUrbAgeb.txt");
     estado.done(function (data) {
         features = mapa.data.addGeoJson(data);
         setTimeout(function () { $("#ciudadesModal").modal("hide") }, 3000);
