@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using GFK.Models;
+using Newtonsoft.Json;
 
 namespace GFK.Controllers
 {
@@ -22,9 +24,25 @@ namespace GFK.Controllers
         }
 
         // POST api/<controller>
-        public void Post([FromBody]string proyecto)
+        public void Post([FromUri] string nuevoproyecto)
         {
-            Console.WriteLine(proyecto);
+            NuevosProyecto np = JsonConvert.DeserializeObject<NuevosProyecto>(nuevoproyecto);
+            
+            try
+            {
+                int i;
+                using (var dbCtx = new NuevoProyectoModel())
+                {
+                    dbCtx.NuevosProyectos.Add(np);
+                    i = dbCtx.SaveChanges();
+                }
+                Console.WriteLine(i);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            
         }
 
         // PUT api/<controller>/5

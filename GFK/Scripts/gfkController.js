@@ -75,15 +75,15 @@
             $scope.CreaNuevoProyecto = function () {
                 this.proyecto = {};
 
-                this.proyecto.numProyecto = this.numProyecto;
-                this.proyecto.nombreProyecto = this.nombreProyecto;
-                this.proyecto.categoriaSeleccionadaID = this.categoriaSeleccionada.ID;
-                this.proyecto.clienteSeleccionadoID = this.clienteSeleccionado.ID;
-                this.proyecto.ciudadSeleccionadaID = this.ciudadSeleccionada.ID;
-                this.proyecto.metodologiaSeleccionadaID = this.metodologiaSeleccionada.ID;
-                this.proyecto.levantamientoSeleccionadoID = this.levantamientoSeleccionado.ID;
-                this.proyecto.muestraTotal = this.muestraTotal;
-                this.proyecto.entrevistasPorPunto = this.entrevistasPorPunto;
+                this.proyecto.IdProyecto = this.numProyecto;
+                this.proyecto.NombreProyecto = this.nombreProyecto;
+                this.proyecto.Categoria = this.categoriaSeleccionada.ID;
+                this.proyecto.Cliente = this.clienteSeleccionado.ID;
+                this.proyecto.Ciudad = this.ciudadSeleccionada.ID;
+                this.proyecto.Metodologia = this.metodologiaSeleccionada.ID;
+                this.proyecto.Levantamiento = this.levantamientoSeleccionado.ID;
+                this.proyecto.MuestraTotal = this.muestraTotal;
+                this.proyecto.EntrevistasPorPunto = this.entrevistasPorPunto;
 
                 this.proyecto.numAB = this.numAB;
                 this.proyecto.numCPlus = this.numCPlus;
@@ -101,7 +101,7 @@
                 this.proyecto.eDPlus = this.eDPlus;
                 this.proyecto.eE = this.eE;
 
-                this.proyecto.eAB = this.aAB;
+                this.proyecto.aAB = this.aAB;
                 this.proyecto.aCPlus = this.aCPlus;
                 this.proyecto.aC = this.aC;
                 this.proyecto.aCMinus = this.aCMinus;
@@ -111,7 +111,7 @@
 
                 //alert(this.proyecto.numProyecto + "  " + this.proyecto.nombreProyecto + " " + this.proyecto.numC + " " + this.proyecto.categoriaSeleccionadaID); // + " " + proyecto.numC);
 
-                NvoProyecto.save({ proyecto: "edgar" }); //this.proyecto});
+                NvoProyecto.save({ nombre: "edgar", proyecto: this.proyecto});
                 //$scope.proyecto = {};
             };
         }

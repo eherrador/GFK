@@ -40,8 +40,10 @@
 
     GFKServices.factory('NvoProyecto', ['$resource',
       function ($resource) {
-          return $resource('/api/nvoproyecto/', { '': '@proyecto' }, {
+          return $resource('/api/nvoproyecto/', { 'nuevoproyecto': '@proyecto' }, {
               save: { method: 'POST', params: {} }
+          //return $resource('/api/nvoproyecto/', { 'nombre': '@nombre', 'nuevoproyecto': '@proyecto' }, {
+          //    save: { method: 'POST', params: {apellido:"herrador"} }
           });
       }]);
 

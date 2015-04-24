@@ -194,6 +194,8 @@
     <Compile Include="Models\Levantamiento.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Metodologia.cs" />
+    <Compile Include="Models\NuevoProyectoModel.cs" />
+    <Compile Include="Models\NuevosProyecto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -230,6 +232,7 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\gfkController.js" />
     <Content Include="Scripts\gfkmapa.js" />
